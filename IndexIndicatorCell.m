@@ -68,7 +68,6 @@
 
 -(void)setSelected:(BOOL)selected{
     [super setSelected:selected];
-    
     if (selected) {
         if (self.show_scale_animation) {
             [UIView animateWithDuration:0.25 animations:^{
