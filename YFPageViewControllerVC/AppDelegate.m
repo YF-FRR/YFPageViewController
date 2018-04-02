@@ -17,11 +17,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
     self.window=[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
-    
     self.window.backgroundColor=[UIColor whiteColor];
-    self.window.rootViewController=[[YFPageViewController alloc] initWith:@[@"第一个Item",@"第二个Item"] vcArr:@[[YFBasePageVC new],[YFBasePageVC new]]];
+    
+    YFPageViewController * pageVC = [[YFPageViewController alloc] initWith:@[@"第一个Item",@"第二个Item",@"第三个Item",@"第四个Item",@"第五个Item"] vcArr:@[[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new]]];
+    pageVC.indicator_scrollEnable = YES;
+    pageVC.indicator_scrollAnimation = YES;
+    pageVC.vc_hirearchy = VCHierarchy_Overlay;
+    self.window.rootViewController = pageVC;
+    
     return YES;
 }
 

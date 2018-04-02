@@ -36,10 +36,6 @@
 @property(nonatomic,weak)id <YFCollectionViewAutoFlowLayoutDelegate>delegate;
 
 /**
- *  列数或者行数
- */
-//@property (nonatomic, assign)NSInteger colOrLineNum;
-/**
  *  每个item的间隔
  */
 @property (nonatomic, assign)CGFloat interSpace;

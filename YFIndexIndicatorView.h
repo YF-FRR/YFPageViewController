@@ -19,6 +19,8 @@
 @property(nonatomic,weak)id<YFIndexIndicatorViewDelegate> delegate;
 @property(nonatomic,strong)NSArray *index_arr;
 @property(nonatomic,assign,getter=current_index)NSInteger scrollToIndex;
+// 是否可以滑动
 @property(nonatomic,assign)BOOL scrollEnabled;
+// 选中item的时候是否有缩放的效果
 @property(nonatomic,assign)BOOL showAnmation;
 @end

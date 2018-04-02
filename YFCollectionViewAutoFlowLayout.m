@@ -8,8 +8,6 @@
 
 #import "YFCollectionViewAutoFlowLayout.h"
 
-//#define LimeItems 4
-
 @interface YFCollectionViewAutoFlowLayout ()
 
 // 宽度数组

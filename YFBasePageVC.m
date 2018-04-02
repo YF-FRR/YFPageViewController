@@ -7,6 +7,7 @@
 //
 
 #import "YFBasePageVC.h"
+#import "YFPageConst.h"
 
 @interface YFBasePageVC ()
 
@@ -22,7 +23,9 @@
     lab.center = self.view.center;
     lab.adjustsFontSizeToFitWidth = YES;
     lab.text = [NSString stringWithFormat:@"第 %ld 个界面",self.index + 1];
+    self.view.backgroundColor = RandomColor;
     
+    NSLog(@"%@ viewDidLoad \n %@",[self class],NSStringFromCGRect(self.view.frame));
 }
 
 -(void)viewAppearToDoThing{
