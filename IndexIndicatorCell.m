@@ -9,7 +9,6 @@
 #import "IndexIndicatorCell.h"
 #import "UIView+Extension.h"
 
-
 @interface IndexIndicatorCell()
 @property(nonatomic,weak)UILabel *titleLab;
 @property(nonatomic,weak)UILabel *countLab;
