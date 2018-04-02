@@ -12,7 +12,6 @@
 
 @interface YFPageViewController : UIViewController
 
-
 /**
  初始化PageVC
 
