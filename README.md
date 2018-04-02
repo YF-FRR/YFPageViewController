@@ -23,8 +23,8 @@
 // 默认VCHierarchy_Scroll,控制器是以滚动的方式切换的
 @property(nonatomic,assign)VCHierarchy vc_hirearchy;
 
-# YFIndexIndicatorView
 ```
+# YFIndexIndicatorView
 
 ## Property
 

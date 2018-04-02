@@ -36,7 +36,7 @@
     YFIndexIndicatorView *indicatorView = [[YFIndexIndicatorView alloc] init];
     [self.view addSubview:indicatorView];
     [indicatorView mas_constraint:^(UIView *make) {
-        make.mas_top = 23;
+        make.mas_top = STATUS_HEIGHT;
         make.mas_left = 0;
         make.mas_right = 0;
         make.mas_height = indicatorViewH;
@@ -59,7 +59,7 @@
     if (self.vc_hirearchy == VCHierarchy_Scroll) {
         UIScrollView *contentScrollView = [UIScrollView new];
         [self.view addSubview:contentScrollView];
-        [contentScrollView addLayoutConstraint:UIEdgeInsetsMake(64, 0, 0, 0 )];
+        [contentScrollView addLayoutConstraint:UIEdgeInsetsMake(STATUS_HEIGHT + 40, 0, 0, 0 )];
         contentScrollView.delegate = self;
         contentScrollView.showsHorizontalScrollIndicator = NO;
         contentScrollView.showsVerticalScrollIndicator = NO;
@@ -71,7 +71,7 @@
         [self.contentScrollView addSubview:vc.view];
 
     }else{
-        vc.view.frame = CGRectMake(0, 64, VC_WIDTH, VC_HEIGHT - NAVI_HEIGHT);
+        vc.view.frame = CGRectMake(0, STATUS_HEIGHT + 40, VC_WIDTH, VC_HEIGHT - NAVI_HEIGHT);
         [self.view addSubview:vc.view];
     }
 
@@ -84,17 +84,19 @@
     if (![vc isViewLoaded]) {
         switch (self.vc_hirearchy) {
             case VCHierarchy_Scroll:
+            {
                 vc.view.frame = CGRectMake(VC_WIDTH * index, 0, VC_WIDTH, VC_HEIGHT - NAVI_HEIGHT);
+                [self.contentScrollView addSubview:vc.view];
+            }
                 break;
             case VCHierarchy_Overlay:
-                vc.view.frame = CGRectMake(0, 64, VC_WIDTH, VC_HEIGHT - NAVI_HEIGHT);
+                vc.view.frame = CGRectMake(0, STATUS_HEIGHT + 40, VC_WIDTH, VC_HEIGHT - NAVI_HEIGHT);
                 break;
             default:
                 break;
         }
         
         [self addChildViewController:vc];
-        [self.contentScrollView addSubview:vc.view];
         vc.view.backgroundColor = RandomColor;
         [vc viewAppearToDoThing];
     }
