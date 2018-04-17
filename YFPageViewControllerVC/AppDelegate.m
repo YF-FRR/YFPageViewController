@@ -25,7 +25,7 @@
     YFPageViewController * pageVC = [[YFPageViewController alloc] initWith:@[@"第一个Item",@"第二个Item",@"第三个Item",@"第四个Item",@"第五个Item"] vcArr:@[[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new]]];
     pageVC.indicator_scrollEnable = YES;
     pageVC.indicator_scrollAnimation = YES;
-    pageVC.vc_hirearchy = VCHierarchy_Overlay;
+    pageVC.vc_hirearchy = VCHierarchy_Scroll;
     self.window.rootViewController = pageVC;
     
     return YES;
