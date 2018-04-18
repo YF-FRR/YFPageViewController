@@ -12,7 +12,7 @@
 @property(nonatomic,weak)UIViewController *superVC;
 @property(nonatomic,assign)NSInteger index;
 
-// 界面的处理
+// 界面第一次创建
 -(void)viewAppearToDoThing;
 
 @end

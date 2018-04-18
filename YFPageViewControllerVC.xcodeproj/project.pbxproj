@@ -13,14 +13,13 @@
 		59526FBC1FE76445008D1C5A /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 59526FB21FE76444008D1C5A /* UIView+Extension.m */; };
 		59526FBD1FE76445008D1C5A /* IndexIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59526FB31FE76444008D1C5A /* IndexIndicatorCell.m */; };
 		59526FBE1FE76445008D1C5A /* YFIndexIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59526FB41FE76444008D1C5A /* YFIndexIndicatorView.m */; };
-		59526FBF1FE76445008D1C5A /* YFCollectionViewAutoFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 59526FB71FE76445008D1C5A /* YFCollectionViewAutoFlowLayout.m */; };
 		598CBB7B1FE4FF7500CA5E31 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 598CBB7A1FE4FF7500CA5E31 /* AppDelegate.m */; };
 		598CBB7E1FE4FF7500CA5E31 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 598CBB7D1FE4FF7500CA5E31 /* ViewController.m */; };
 		598CBB811FE4FF7500CA5E31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 598CBB7F1FE4FF7500CA5E31 /* Main.storyboard */; };
 		598CBB831FE4FF7500CA5E31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 598CBB821FE4FF7500CA5E31 /* Assets.xcassets */; };
 		598CBB861FE4FF7500CA5E31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 598CBB841FE4FF7500CA5E31 /* LaunchScreen.storyboard */; };
 		598CBB891FE4FF7500CA5E31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 598CBB881FE4FF7500CA5E31 /* main.m */; };
-		AEF9E22434D826BB1F06E8F8 /* libPods-YFPageViewControllerVC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75CED2632FEFA24C7F81F56B /* libPods-YFPageViewControllerVC.a */; };
+		70F2D216BA24F54A8625E5C4 /* libPods-YFPageViewControllerVC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C8A47A293837BE2E91007C /* libPods-YFPageViewControllerVC.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +35,6 @@
 		59526FB31FE76444008D1C5A /* IndexIndicatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexIndicatorCell.m; sourceTree = "<group>"; };
 		59526FB41FE76444008D1C5A /* YFIndexIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFIndexIndicatorView.m; sourceTree = "<group>"; };
 		59526FB51FE76445008D1C5A /* YFIndexIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFIndexIndicatorView.h; sourceTree = "<group>"; };
-		59526FB71FE76445008D1C5A /* YFCollectionViewAutoFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFCollectionViewAutoFlowLayout.m; sourceTree = "<group>"; };
-		59526FB81FE76445008D1C5A /* YFCollectionViewAutoFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFCollectionViewAutoFlowLayout.h; sourceTree = "<group>"; };
 		5966F0A22071C93D00B6E126 /* YFPageConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFPageConst.h; sourceTree = "<group>"; };
 		598CBB761FE4FF7500CA5E31 /* YFPageViewControllerVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YFPageViewControllerVC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		598CBB791FE4FF7500CA5E31 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -49,9 +46,9 @@
 		598CBB851FE4FF7500CA5E31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		598CBB871FE4FF7500CA5E31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		598CBB881FE4FF7500CA5E31 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		75CED2632FEFA24C7F81F56B /* libPods-YFPageViewControllerVC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YFPageViewControllerVC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1B36F66231322181874A7CD /* Pods-YFPageViewControllerVC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFPageViewControllerVC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YFPageViewControllerVC/Pods-YFPageViewControllerVC.debug.xcconfig"; sourceTree = "<group>"; };
-		B7E332F652350355D5C99808 /* Pods-YFPageViewControllerVC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFPageViewControllerVC.release.xcconfig"; path = "Pods/Target Support Files/Pods-YFPageViewControllerVC/Pods-YFPageViewControllerVC.release.xcconfig"; sourceTree = "<group>"; };
+		A5C8A47A293837BE2E91007C /* libPods-YFPageViewControllerVC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YFPageViewControllerVC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6F01B0749BF667DAA451F09 /* Pods-YFPageViewControllerVC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFPageViewControllerVC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YFPageViewControllerVC/Pods-YFPageViewControllerVC.debug.xcconfig"; sourceTree = "<group>"; };
+		D4B3A0505CE7A9C23481FF79 /* Pods-YFPageViewControllerVC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YFPageViewControllerVC.release.xcconfig"; path = "Pods/Target Support Files/Pods-YFPageViewControllerVC/Pods-YFPageViewControllerVC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,20 +56,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEF9E22434D826BB1F06E8F8 /* libPods-YFPageViewControllerVC.a in Frameworks */,
+				70F2D216BA24F54A8625E5C4 /* libPods-YFPageViewControllerVC.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		586F55D0AC27B228D1300D22 /* Pods */ = {
+		0E7D6AC4987164958C2C1298 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B1B36F66231322181874A7CD /* Pods-YFPageViewControllerVC.debug.xcconfig */,
-				B7E332F652350355D5C99808 /* Pods-YFPageViewControllerVC.release.xcconfig */,
+				A5C8A47A293837BE2E91007C /* libPods-YFPageViewControllerVC.a */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		593969D92085E88500F6F8E2 /* YFPageViewControllerPod */ = {
@@ -85,8 +81,6 @@
 				59526FB31FE76444008D1C5A /* IndexIndicatorCell.m */,
 				59526FB51FE76445008D1C5A /* YFIndexIndicatorView.h */,
 				59526FB41FE76444008D1C5A /* YFIndexIndicatorView.m */,
-				59526FB81FE76445008D1C5A /* YFCollectionViewAutoFlowLayout.h */,
-				59526FB71FE76445008D1C5A /* YFCollectionViewAutoFlowLayout.m */,
 				5931053F1FEA598D00DB4C37 /* YFPageViewController.h */,
 				593105401FEA598D00DB4C37 /* YFPageViewController.m */,
 				5931053C1FEA3D3900DB4C37 /* YFBasePageVC.h */,
@@ -101,8 +95,8 @@
 				593969D92085E88500F6F8E2 /* YFPageViewControllerPod */,
 				598CBB781FE4FF7500CA5E31 /* YFPageViewControllerVC */,
 				598CBB771FE4FF7500CA5E31 /* Products */,
-				586F55D0AC27B228D1300D22 /* Pods */,
-				C0D805BF3CB633A42C0A9578 /* Frameworks */,
+				62FDC8820A8403F5B8987AF5 /* Pods */,
+				0E7D6AC4987164958C2C1298 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,12 +126,13 @@
 			path = YFPageViewControllerVC;
 			sourceTree = "<group>";
 		};
-		C0D805BF3CB633A42C0A9578 /* Frameworks */ = {
+		62FDC8820A8403F5B8987AF5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				75CED2632FEFA24C7F81F56B /* libPods-YFPageViewControllerVC.a */,
+				C6F01B0749BF667DAA451F09 /* Pods-YFPageViewControllerVC.debug.xcconfig */,
+				D4B3A0505CE7A9C23481FF79 /* Pods-YFPageViewControllerVC.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,12 +142,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 598CBB8C1FE4FF7500CA5E31 /* Build configuration list for PBXNativeTarget "YFPageViewControllerVC" */;
 			buildPhases = (
-				FE0E71069B9660DFEC2F13CE /* [CP] Check Pods Manifest.lock */,
+				4DC0B2ED0A31E6648005FF30 /* [CP] Check Pods Manifest.lock */,
 				598CBB721FE4FF7500CA5E31 /* Sources */,
 				598CBB731FE4FF7500CA5E31 /* Frameworks */,
 				598CBB741FE4FF7500CA5E31 /* Resources */,
-				6377199A89BEE3BEB6E39641 /* [CP] Embed Pods Frameworks */,
-				04C9FA8AA2314D177EB97EBD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -210,60 +203,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		04C9FA8AA2314D177EB97EBD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-YFPageViewControllerVC/Pods-YFPageViewControllerVC-resources.sh",
-				"${PODS_ROOT}/AMap3DMap/MAMapKit.framework/AMap.bundle",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
-				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				"${PODS_ROOT}/UMengUShare/UShareSDK/SocialLibraries/QQ/TencentOpenApi_IOS_Bundle.bundle",
-				"${PODS_ROOT}/UMengUShare/UShareSDK/SocialLibraries/Sina/WeiboSDK.bundle",
-				"${PODS_ROOT}/UMengUShare/UShareSDK/SocialLibraries/Twitter/TwitterKit.framework/Resources/TwitterKitResources.bundle",
-				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialUI/Resource/UMSocialSDKResources.bundle",
-				"${PODS_ROOT}/iOS-AlipaySDK/AlipaySDK.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TencentOpenApi_IOS_Bundle.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YFPageViewControllerVC/Pods-YFPageViewControllerVC-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6377199A89BEE3BEB6E39641 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YFPageViewControllerVC/Pods-YFPageViewControllerVC-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FE0E71069B9660DFEC2F13CE /* [CP] Check Pods Manifest.lock */ = {
+		4DC0B2ED0A31E6648005FF30 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,7 +228,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59526FBF1FE76445008D1C5A /* YFCollectionViewAutoFlowLayout.m in Sources */,
 				59526FBC1FE76445008D1C5A /* UIView+Extension.m in Sources */,
 				593105411FEA598D00DB4C37 /* YFPageViewController.m in Sources */,
 				598CBB7E1FE4FF7500CA5E31 /* ViewController.m in Sources */,
@@ -429,7 +368,7 @@
 		};
 		598CBB8D1FE4FF7500CA5E31 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B1B36F66231322181874A7CD /* Pods-YFPageViewControllerVC.debug.xcconfig */;
+			baseConfigurationReference = C6F01B0749BF667DAA451F09 /* Pods-YFPageViewControllerVC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -443,7 +382,7 @@
 		};
 		598CBB8E1FE4FF7500CA5E31 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7E332F652350355D5C99808 /* Pods-YFPageViewControllerVC.release.xcconfig */;
+			baseConfigurationReference = D4B3A0505CE7A9C23481FF79 /* Pods-YFPageViewControllerVC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

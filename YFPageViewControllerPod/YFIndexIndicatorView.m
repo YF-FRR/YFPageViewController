@@ -12,6 +12,8 @@
 #import "UIView+Extension.h"
 #import "YFPageConst.h"
 
+#define getSize(str,h,font)  [str boundingRectWithSize:CGSizeMake(10000, h) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]} context:nil].size
+
 @interface YFIndexIndicatorView()<UICollectionViewDelegate,UICollectionViewDataSource,YFCollectionViewAutoFlowLayoutDelegate>{
     NSInteger current_selected_index;
 }
@@ -38,8 +40,9 @@
 -(void)configUI{
 
     YFCollectionViewAutoFlowLayout * flowLayout=[[YFCollectionViewAutoFlowLayout alloc] init];
-    flowLayout.itemSize = CGSizeMake(1, 1);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    flowLayout.itemSizeType = ItemSizeEqualHeight;
+    flowLayout.numberOfLines = 1;
     flowLayout.interSpace = 0;
     flowLayout.delegate = self;
     
@@ -57,18 +60,15 @@
 }
 
 #pragma mark ====== YFCollectionViewAutoFlowLayoutDelegate =======
--(CGSize)collectionViewItemSizeForIndexPath:(NSIndexPath *)indexPath{
+-(CGSize)collectionView:(UICollectionView *)collectionView itemSizeForIndexPath:(NSIndexPath *)indexPath{
     if (self.scrollEnabled) {
-       return CGSizeMake(100, self.collectionView.frame.size.height);
+        NSString *title = self.index_arr[indexPath.item][@"title"];
+        CGFloat width = getSize(title,self.collectionView.frame.size.height,14).width + 20;
+        return CGSizeMake(width, self.collectionView.frame.size.height);
     }else{
-        
         CGFloat width = self.collectionView.frame.size.width / self.index_arr.count;
         return CGSizeMake(width, self.collectionView.frame.size.height);
     }
-}
-
--(CGSize)collectionViewSectionHeadSizeForSection:(NSInteger)section{
-    return CGSizeMake(0, 0);
 }
 
 #pragma mark ====== UICollectionViewDataSource =======
@@ -82,7 +82,7 @@
 
 -(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     IndexIndicatorCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"IndexIndicatorCell" forIndexPath:indexPath];
-    [cell realoadCellWith:self.index_arr[indexPath.item] count:@""];
+    [cell realoadCellWith:self.index_arr[indexPath.item][@"title"] count:self.index_arr[indexPath.item][@"badge"]];
     cell.show_scale_animation = self.showAnmation;
     cell.backgroundColor = RandomColor;
     return cell;

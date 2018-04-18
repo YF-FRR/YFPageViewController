@@ -17,7 +17,13 @@
 
 @interface YFIndexIndicatorView : UIView
 @property(nonatomic,weak)id<YFIndexIndicatorViewDelegate> delegate;
-@property(nonatomic,strong)NSArray *index_arr;
+/*
+ @{
+ @"title":@"title",
+ @"badge":@"1"
+ }
+ */
+@property(nonatomic,strong)NSArray<NSDictionary*> *index_arr;
 @property(nonatomic,assign,getter=current_index)NSInteger scrollToIndex;
 // 是否可以滑动
 @property(nonatomic,assign)BOOL scrollEnabled;

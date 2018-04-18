@@ -22,7 +22,19 @@
     [self.window makeKeyAndVisible];
     self.window.backgroundColor=[UIColor whiteColor];
     
-    YFPageViewController * pageVC = [[YFPageViewController alloc] initWith:@[@"第一个Item",@"第二个Item",@"第三个Item",@"第四个Item",@"第五个Item"] vcArr:@[[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new],[YFBasePageVC new]]];
+    YFPageViewController * pageVC = [[YFPageViewController alloc]
+                                     initWith:
+                                     @[@{@"title":@"第一个Item",@"badge":@"1"},
+                                       @{@"title":@"第二个Item",@"badge":@"2"},
+                                       @{@"title":@"第三个Item",@"badge":@"3"},
+                                       @{@"title":@"第四个Item",@"badge":@"4"},
+                                       @{@"title":@"第五个Item",@"badge":@"0"},]
+                                     vcArr:
+                                     @[[YFBasePageVC new],
+                                       [YFBasePageVC new],
+                                       [YFBasePageVC new],
+                                       [YFBasePageVC new],
+                                       [YFBasePageVC new]]];
     pageVC.indicator_scrollEnable = YES;
     pageVC.indicator_scrollAnimation = YES;
     pageVC.vc_hirearchy = VCHierarchy_Scroll;

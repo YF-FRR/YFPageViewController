@@ -121,9 +121,10 @@
     self.index_arr = @[@"第一个Item",@"第二个Item",@"第三个Item",@"第四个Item",@"第五个Item",@"第六个Item",@"第七个Item",@"第八个Item",@"第九个Item",@"第十个Item"];
     
     YFCollectionViewAutoFlowLayout * flowLayout=[[YFCollectionViewAutoFlowLayout alloc] init];
-    flowLayout.itemSize = CGSizeMake(1, 1);
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    flowLayout.interSpace = 10;
+    flowLayout.itemSizeType = ItemSizeEqualHeight;
+    flowLayout.numberOfLines = 1;
+    flowLayout.interSpace = 0;
     flowLayout.delegate = self;
     
     UICollectionView *collectionView=[[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
@@ -141,7 +142,7 @@
 }
 
 #pragma mark ====== YFCollectionViewAutoFlowLayoutDelegate =======
--(CGSize)collectionViewItemSizeForIndexPath:(NSIndexPath *)indexPath{
+-(CGSize)collectionView:(UICollectionView *)collectionView itemSizeForIndexPath:(NSIndexPath *)indexPath{
 //    CGFloat width = self.collectionView.frame.size.width / self.index_arr.count;
     return CGSizeMake(100, 30);
 }

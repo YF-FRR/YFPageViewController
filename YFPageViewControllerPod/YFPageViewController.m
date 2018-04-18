@@ -55,8 +55,7 @@
         vc.index = i;
         vc.superVC = self;
     }
-    
-    
+
     if (self.vc_hirearchy == VCHierarchy_Scroll) {
         UIScrollView *contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, STATUS_HEIGHT + 40, VC_WIDTH, VC_HEIGHT - NAVI_HEIGHT)];
         [self.view addSubview:contentScrollView];
