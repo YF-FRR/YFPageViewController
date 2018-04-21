@@ -40,4 +40,5 @@
 @property(nonatomic,assign)CGFloat indicatorLineAutoWidth;
 // indicatorLine的颜色
 @property(nonatomic,strong)UIColor *indicatorLineColor;
+
 @end

@@ -13,6 +13,7 @@
 		59526FBC1FE76445008D1C5A /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 59526FB21FE76444008D1C5A /* UIView+Extension.m */; };
 		59526FBD1FE76445008D1C5A /* IndexIndicatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59526FB31FE76444008D1C5A /* IndexIndicatorCell.m */; };
 		59526FBE1FE76445008D1C5A /* YFIndexIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59526FB41FE76444008D1C5A /* YFIndexIndicatorView.m */; };
+		59549FCB208ADADD00BC1594 /* YFPageViewIndicatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59549FCA208ADADD00BC1594 /* YFPageViewIndicatorController.m */; };
 		598CBB7B1FE4FF7500CA5E31 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 598CBB7A1FE4FF7500CA5E31 /* AppDelegate.m */; };
 		598CBB7E1FE4FF7500CA5E31 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 598CBB7D1FE4FF7500CA5E31 /* ViewController.m */; };
 		598CBB811FE4FF7500CA5E31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 598CBB7F1FE4FF7500CA5E31 /* Main.storyboard */; };
@@ -35,6 +36,8 @@
 		59526FB31FE76444008D1C5A /* IndexIndicatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexIndicatorCell.m; sourceTree = "<group>"; };
 		59526FB41FE76444008D1C5A /* YFIndexIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFIndexIndicatorView.m; sourceTree = "<group>"; };
 		59526FB51FE76445008D1C5A /* YFIndexIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFIndexIndicatorView.h; sourceTree = "<group>"; };
+		59549FC9208ADADD00BC1594 /* YFPageViewIndicatorController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFPageViewIndicatorController.h; sourceTree = "<group>"; };
+		59549FCA208ADADD00BC1594 /* YFPageViewIndicatorController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFPageViewIndicatorController.m; sourceTree = "<group>"; };
 		5966F0A22071C93D00B6E126 /* YFPageConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFPageConst.h; sourceTree = "<group>"; };
 		598CBB761FE4FF7500CA5E31 /* YFPageViewControllerVC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YFPageViewControllerVC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		598CBB791FE4FF7500CA5E31 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -81,6 +84,8 @@
 				59526FB31FE76444008D1C5A /* IndexIndicatorCell.m */,
 				59526FB51FE76445008D1C5A /* YFIndexIndicatorView.h */,
 				59526FB41FE76444008D1C5A /* YFIndexIndicatorView.m */,
+				59549FC9208ADADD00BC1594 /* YFPageViewIndicatorController.h */,
+				59549FCA208ADADD00BC1594 /* YFPageViewIndicatorController.m */,
 				5931053F1FEA598D00DB4C37 /* YFPageViewController.h */,
 				593105401FEA598D00DB4C37 /* YFPageViewController.m */,
 				5931053C1FEA3D3900DB4C37 /* YFBasePageVC.h */,
@@ -232,6 +237,7 @@
 				593105411FEA598D00DB4C37 /* YFPageViewController.m in Sources */,
 				598CBB7E1FE4FF7500CA5E31 /* ViewController.m in Sources */,
 				5931053E1FEA3D3900DB4C37 /* YFBasePageVC.m in Sources */,
+				59549FCB208ADADD00BC1594 /* YFPageViewIndicatorController.m in Sources */,
 				59526FBE1FE76445008D1C5A /* YFIndexIndicatorView.m in Sources */,
 				598CBB891FE4FF7500CA5E31 /* main.m in Sources */,
 				598CBB7B1FE4FF7500CA5E31 /* AppDelegate.m in Sources */,

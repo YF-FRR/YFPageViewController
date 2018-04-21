@@ -9,12 +9,7 @@
 #import "ViewController.h"
 #import "YFIndexIndicatorView.h"
 #import "UIView+Extension.h"
-
-#import "IndexIndicatorCell.h"
-#import "YFCollectionViewAutoFlowLayout.h"
-#import "HeaderReusableView.h"
-
-#import "YFBasePageVC.h"
+#import "YFPageViewController.h"
 
 #define indicatorViewH 40
 
@@ -29,12 +24,10 @@
 #define WIDTH [UIScreen mainScreen].bounds.size.width
 #define HEIGHT (isIPhoneX ? ([UIScreen mainScreen].bounds.size.height -13 ) :[UIScreen mainScreen].bounds.size.height)
 
-@interface ViewController ()<YFIndexIndicatorViewDelegate,YFCollectionViewAutoFlowLayoutDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
-@property(nonatomic,weak)UICollectionView *collectionView;
-@property(nonatomic,strong)NSArray *index_arr;
+@interface ViewController ()<YFIndexIndicatorViewDelegate,YFPageViewControllerDelegate>
 @property(nonatomic,strong)NSMutableArray *subVCArr;
 @property(nonatomic,weak)YFIndexIndicatorView *indicatorView;
-@property(nonatomic,weak)UIScrollView *contentScrollView;
+@property(nonatomic,weak)YFPageViewController *pageViewController;
 @end
 
 @implementation ViewController
@@ -42,8 +35,12 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-//    [self testCollectionFlowLayout];
-    NSArray *arr = @[@"第一个Item",@"第二个Item",@"第三个Item",@"第四个Item",@"第五个Item",@"第六个Item",@"第七个Item",@"第八个Item",@"第九个Item",@"第十个Item"];
+
+    NSArray *arr = @[@{@"title":@"第一个阿斯顿发斯蒂芬Item",@"badge":@"1"},
+                     @{@"title":@"第二个Item",@"badge":@"2"},
+                     @{@"title":@"第三个Item",@"badge":@"3"},
+                     @{@"title":@"第四发生的范德萨个Item",@"badge":@"4"},
+                     @{@"title":@"第五个Item",@"badge":@"0"}];
     
     YFIndexIndicatorView *indicatorView = [[YFIndexIndicatorView alloc] init];
     [self.view addSubview:indicatorView];
@@ -56,122 +53,45 @@
     indicatorView.index_arr = arr;
     indicatorView.delegate = self;
     indicatorView.scrollEnabled = YES;
-    indicatorView.showAnmation = NO;
-    indicatorView.backgroundColor = [UIColor orangeColor];
+    indicatorView.showAnmation = YES;
+    indicatorView.showIndicatorLineView = YES;
+    indicatorView.indicatorLineWidth = 100;
+    indicatorView.indicatorLineColor = [UIColor blackColor];
+    indicatorView.indicatorLineAutoWidth = NO;
+    indicatorView.scrollToIndex = 0;
     self.indicatorView = indicatorView;
-    
-    UIScrollView *contentScrollView = [UIScrollView new];
-    [self.view addSubview:contentScrollView];
-    [contentScrollView addLayoutConstraint:UIEdgeInsetsMake(64, 0, 0, 0 )];
-    contentScrollView.delegate = self;
-    contentScrollView.showsHorizontalScrollIndicator = NO;
-    contentScrollView.showsVerticalScrollIndicator = NO;
-    contentScrollView.pagingEnabled = YES;
-    contentScrollView.contentSize = CGSizeMake(WIDTH * arr.count, HEIGHT - NAVI_HEIGHT);
-    self.contentScrollView = contentScrollView;
-    
+
     self.subVCArr = [NSMutableArray array];
     for (int i=0; i<arr.count; i++) {
         YFBasePageVC *vc = [YFBasePageVC new];
         vc.index = i;
-        [self addChildViewController:vc];
-//        __weak typeof(self) weakSelf=self;
         vc.superVC = self;
         [self.subVCArr addObject:vc];
     }
-    YFBasePageVC *vc = self.subVCArr.firstObject;
     
-    [self.contentScrollView addSubview:vc.view];
-    vc.view.backgroundColor = RandomColor;
-    vc.view.frame = CGRectZero;
-    
-    self.indicatorView.scrollToIndex = 0;
+    YFPageViewController *pageViewController = [[YFPageViewController alloc] initWithTransformType:VCTransformType_Scroll vcArr:self.subVCArr.copy];
+    pageViewController.view.frame = CGRectMake(0, 60, WIDTH, HEIGHT - 62);
+    pageViewController.delegate = self;
+    pageViewController.superVC = self;
+    [self addChildViewController:pageViewController];
+    self.pageViewController = pageViewController;
+    [self.view addSubview:pageViewController.view];
  
 }
 
+#pragma mark ====== YFIndexIndicatorViewDelegate =======
 - (void)indexIndicatorView :(YFIndexIndicatorView *)indexIndicatorView didSelectItemAtIndex:(NSInteger)index{
     NSLog(@"点击了第 %ld 个",indexIndicatorView.current_index);
-    
-    YFBasePageVC *vc = self.subVCArr[index];
-    if (![vc isViewLoaded]) {
-        vc.view.frame = CGRectMake(WIDTH * index, 0, WIDTH, HEIGHT - NAVI_HEIGHT);
-        [self.contentScrollView addSubview:vc.view];
-        vc.view.backgroundColor = RandomColor;
-        [vc viewAppearToDoThing];
-    }
-    
-    [self.contentScrollView setContentOffset:CGPointMake(WIDTH *index, 0) animated:YES];
+    self.pageViewController.current_index = index;
+  
 }
 
-#pragma mark ====== UIScrollViewDelegate =======
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    NSInteger index = scrollView.contentOffset.x/WIDTH;
+#pragma mark ====== YFPageViewControllerDelegate =======
+-(void)pageViewController:(YFPageViewController *)pageViewController
+   showNextViewController:(YFBasePageVC *)subVC
+               showNextVC:(NSUInteger)index{
+    
     self.indicatorView.scrollToIndex = index;
-    YFBasePageVC *vc = self.subVCArr[index];
-    if (![vc isViewLoaded]) {
-        vc.view.frame = CGRectMake(WIDTH * index, 0, WIDTH, HEIGHT - NAVI_HEIGHT);
-        [self.contentScrollView addSubview:vc.view];
-        vc.view.backgroundColor = RandomColor;
-        [vc viewAppearToDoThing];
-    }
-}
-
-#pragma mark ====== 测试 YFCollectionViewAutoFlowLayout =======
--(void)testCollectionFlowLayout{
-    self.index_arr = @[@"第一个Item",@"第二个Item",@"第三个Item",@"第四个Item",@"第五个Item",@"第六个Item",@"第七个Item",@"第八个Item",@"第九个Item",@"第十个Item"];
-    
-    YFCollectionViewAutoFlowLayout * flowLayout=[[YFCollectionViewAutoFlowLayout alloc] init];
-    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    flowLayout.itemSizeType = ItemSizeEqualHeight;
-    flowLayout.numberOfLines = 1;
-    flowLayout.interSpace = 0;
-    flowLayout.delegate = self;
-    
-    UICollectionView *collectionView=[[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
-    collectionView.dataSource=self;
-    collectionView.delegate=self;
-    collectionView.backgroundColor = [UIColor yellowColor];
-    [collectionView registerClass:[IndexIndicatorCell class] forCellWithReuseIdentifier:@"IndexIndicatorCell"];
-    [collectionView registerClass:[HeaderReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderReusableView"];
-    collectionView.showsVerticalScrollIndicator = NO;
-    collectionView.showsHorizontalScrollIndicator = NO;
-    [self.view addSubview:collectionView];
-    self.collectionView = collectionView;
-    [self.collectionView addLayoutConstraint:UIEdgeInsetsMake(100, 0, -100, 0)];
-
-}
-
-#pragma mark ====== YFCollectionViewAutoFlowLayoutDelegate =======
--(CGSize)collectionView:(UICollectionView *)collectionView itemSizeForIndexPath:(NSIndexPath *)indexPath{
-//    CGFloat width = self.collectionView.frame.size.width / self.index_arr.count;
-    return CGSizeMake(100, 30);
-}
-
--(CGSize)collectionViewSectionHeadSizeForSection:(NSInteger)section{
-    return CGSizeMake(0, 0);
-}
-
-#pragma mark ====== UICollectionViewDataSource =======
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
-}
-
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.index_arr.count;
-}
-
--(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    IndexIndicatorCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"IndexIndicatorCell" forIndexPath:indexPath];
-    [cell realoadCellWith:self.index_arr[indexPath.item] count:@""];
-    cell.backgroundColor = RandomColor;
-    return cell;
-}
-
--(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    HeaderReusableView *header = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderReusableView" forIndexPath:indexPath];
-    header.titleStr = [NSString stringWithFormat:@"第%ld个区头",indexPath.section];
-    return header;
 }
 
 @end

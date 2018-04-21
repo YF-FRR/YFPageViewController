@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "YFPageViewController.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,23 +23,25 @@
     [self.window makeKeyAndVisible];
     self.window.backgroundColor=[UIColor whiteColor];
     
-    YFPageViewController * pageVC = [[YFPageViewController alloc]
-                                     initWith:
-                                     @[@{@"title":@"第一个阿斯顿发斯蒂芬Item",@"badge":@"1"},
-                                       @{@"title":@"第二个Item",@"badge":@"2"},
-                                       @{@"title":@"第三个Item",@"badge":@"3"},
-                                       @{@"title":@"第四发生的范德萨个Item",@"badge":@"4"},
-                                       @{@"title":@"第五个Item",@"badge":@"0"},]
-                                     vcArr:
-                                     @[[YFBasePageVC new],
-                                       [YFBasePageVC new],
-                                       [YFBasePageVC new],
-                                       [YFBasePageVC new],
-                                       [YFBasePageVC new]]];
-    pageVC.indicator_scrollEnable = YES;
-    pageVC.indicator_scrollAnimation = YES;
-    pageVC.vc_hirearchy = VCHierarchy_Scroll;
-    self.window.rootViewController = pageVC;
+//    YFPageViewController * pageVC = [[YFPageViewController alloc]
+//                                     initWith:
+//                                     @[@{@"title":@"第一个阿斯顿发斯蒂芬Item",@"badge":@"1"},
+//                                       @{@"title":@"第二个Item",@"badge":@"2"},
+//                                       @{@"title":@"第三个Item",@"badge":@"3"},
+//                                       @{@"title":@"第四发生的范德萨个Item",@"badge":@"4"},
+//                                       @{@"title":@"第五个Item",@"badge":@"0"},]
+//                                     vcArr:
+//                                     @[[YFBasePageVC new],
+//                                       [YFBasePageVC new],
+//                                       [YFBasePageVC new],
+//                                       [YFBasePageVC new],
+//                                       [YFBasePageVC new]]];
+//    pageVC.indicator_scrollEnable = YES;
+//    pageVC.indicator_scrollAnimation = YES;
+//    pageVC.vc_hirearchy = VCHierarchy_Scroll;
+//    self.window.rootViewController = pageVC;
+    
+    self.window.rootViewController = [[ViewController alloc] init];
     
     return YES;
 }

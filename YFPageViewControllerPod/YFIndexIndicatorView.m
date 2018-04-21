@@ -10,6 +10,8 @@
 #import "IndexIndicatorCell.h"
 #import "UIView+Extension.h"
 
+#define IndicatorLineH 4
+
 #define RandomColor [UIColor colorWithRed:(arc4random()%256 /255.0) green:(arc4random()%256 /255.0) blue:(arc4random()%256/255.0) alpha:1.0]
 
 #define getSize(str,h,font)  [str boundingRectWithSize:CGSizeMake(10000, h) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]} context:nil].size
@@ -22,6 +24,7 @@
 @end
 
 @implementation YFIndexIndicatorView
+
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -38,14 +41,14 @@
 }
 
 -(void)configUI{
-
+    
     YFCollectionViewAutoFlowLayout * flowLayout=[[YFCollectionViewAutoFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     flowLayout.itemSizeType = ItemSizeEqualHeight;
     flowLayout.numberOfLines = 1;
     flowLayout.interSpace = 0;
     flowLayout.delegate = self;
-
+    
     UICollectionView *collectionView=[[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
     collectionView.dataSource=self;
     collectionView.delegate=self;
@@ -55,13 +58,18 @@
     collectionView.showsHorizontalScrollIndicator = NO;
     [self addSubview:collectionView];
     self.collectionView = collectionView;
-  
+    
 }
 
 -(void)layoutSubviews{
     self.collectionView.frame = self.bounds;
-    CGRect frame = CGRectMake(_indicatroLineView.frame.origin.x, _indicatroLineView.frame.origin.y, _indicatorLineWidth, _indicatroLineView.bounds.size.height);
-    _indicatroLineView.frame = frame;
+    if (_showIndicatorLineView) {
+        [self.collectionView addSubview:self.indicatroLineView];
+        CGRect frame = CGRectMake(_indicatroLineView.frame.origin.x, _indicatroLineView.frame.origin.y, _indicatorLineWidth, _indicatroLineView.bounds.size.height);
+        _indicatroLineView.frame = frame;
+    }
+    _indicatroLineView.hidden = !_showIndicatorLineView;
+    
 }
 
 #pragma mark ====== YFCollectionViewAutoFlowLayoutDelegate =======
@@ -70,7 +78,7 @@
         NSString *title = self.index_arr[indexPath.item][@"title"];
         CGFloat width = getSize(title,self.collectionView.frame.size.height,14).width;
         width = _showAnmation ?( width * 1.3 + 10): width;
-
+        
         return CGSizeMake(width, self.collectionView.frame.size.height);
     }else{
         CGFloat width = self.collectionView.frame.size.width / self.index_arr.count;
@@ -109,25 +117,23 @@
     }
     if (self.showIndicatorLineView) {
         UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-        CGPoint center = CGPointMake(cell.center.x , _indicatroLineView.center.y);
+        CGPoint center = CGPointMake(cell.center.x , cell.height - IndicatorLineH);
         [UIView animateWithDuration:0.25 animations:^{
             if (_indicatorLineAutoWidth) {
                 _indicatroLineView.width = cell.width * 0.8;
             }
             _indicatroLineView.center = center;
-           
         }];
     }
-
+    
 }
 
 #pragma mark ====== Functions =======
 -(void)setScrollToIndex:(NSInteger)scrollToIndex{
-    
     current_selected_index = scrollToIndex;
+    [self layoutIfNeeded];
     if (_index_arr.count > 0) {
         [self collectionView:self.collectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:scrollToIndex inSection:0]];
-        [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:scrollToIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
     }
 }
 
@@ -155,26 +161,12 @@
 // indicatroLineView
 -(UIView *)indicatroLineView{
     if (_indicatroLineView==nil) {
-        _indicatroLineView=[[UIView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height - 4, _indicatorLineWidth, 4)];
+        _indicatroLineView=[[UIView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height - IndicatorLineH, _indicatorLineWidth, IndicatorLineH)];
         _indicatroLineView.backgroundColor = [UIColor greenColor];
         _indicatroLineView.layer.cornerRadius=2;
         _indicatroLineView.clipsToBounds=YES;
     }
     return _indicatroLineView;
-}
-
--(void)setShowIndicatorLineView:(BOOL)showIndicatorLineView{
-    _showIndicatorLineView = showIndicatorLineView;
-    if (showIndicatorLineView) {
-        [self.collectionView addSubview:self.indicatroLineView];
-    }
-    _indicatroLineView.hidden = !showIndicatorLineView;
-}
-
--(void)setIndicatorLineWidth:(CGFloat)indicatorLineWidth{
-    _indicatorLineWidth = indicatorLineWidth;
-    CGRect frame = CGRectMake(_indicatroLineView.frame.origin.x, _indicatroLineView.frame.origin.y, indicatorLineWidth, _indicatroLineView.bounds.size.height);
-    _indicatroLineView.frame = frame;
 }
 
 -(void)setIndicatorLineColor:(UIColor *)indicatorLineColor{
