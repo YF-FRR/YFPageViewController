@@ -1,16 +1,16 @@
-//
 //  YFIndexIndicatorView.m
-//  YFPageViewControllerVC
 //
-//  Created by ios_yangfei on 2017/12/16.
-//  Copyright © 2017年 jianghu3. All rights reserved.
+//
+//  Created by YangFei on 2018/4/10.
+//  Copyright © 2018年 YangFei. All rights reserved.
 //
 
 #import "YFIndexIndicatorView.h"
 #import "YFCollectionViewAutoFlowLayout.h"
 #import "IndexIndicatorCell.h"
 #import "UIView+Extension.h"
-#import "YFPageConst.h"
+
+#define RandomColor [UIColor colorWithRed:(arc4random()%256 /255.0) green:(arc4random()%256 /255.0) blue:(arc4random()%256/255.0) alpha:1.0]
 
 #define getSize(str,h,font)  [str boundingRectWithSize:CGSizeMake(10000, h) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]} context:nil].size
 
@@ -18,7 +18,7 @@
     NSInteger current_selected_index;
 }
 @property(nonatomic,weak)UICollectionView *collectionView;
-
+@property(nonatomic,strong)UIView *indicatroLineView;
 @end
 
 @implementation YFIndexIndicatorView
@@ -45,8 +45,8 @@
     flowLayout.numberOfLines = 1;
     flowLayout.interSpace = 0;
     flowLayout.delegate = self;
-    
-    UICollectionView *collectionView=[[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+
+    UICollectionView *collectionView=[[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
     collectionView.dataSource=self;
     collectionView.delegate=self;
     collectionView.backgroundColor = [UIColor clearColor];
@@ -55,15 +55,22 @@
     collectionView.showsHorizontalScrollIndicator = NO;
     [self addSubview:collectionView];
     self.collectionView = collectionView;
-    [self.collectionView addLayoutConstraint:UIEdgeInsetsZero];
   
+}
+
+-(void)layoutSubviews{
+    self.collectionView.frame = self.bounds;
+    CGRect frame = CGRectMake(_indicatroLineView.frame.origin.x, _indicatroLineView.frame.origin.y, _indicatorLineWidth, _indicatroLineView.bounds.size.height);
+    _indicatroLineView.frame = frame;
 }
 
 #pragma mark ====== YFCollectionViewAutoFlowLayoutDelegate =======
 -(CGSize)collectionView:(UICollectionView *)collectionView itemSizeForIndexPath:(NSIndexPath *)indexPath{
     if (self.scrollEnabled) {
         NSString *title = self.index_arr[indexPath.item][@"title"];
-        CGFloat width = getSize(title,self.collectionView.frame.size.height,14).width + 20;
+        CGFloat width = getSize(title,self.collectionView.frame.size.height,14).width;
+        width = _showAnmation ?( width * 1.3 + 10): width;
+
         return CGSizeMake(width, self.collectionView.frame.size.height);
     }else{
         CGFloat width = self.collectionView.frame.size.width / self.index_arr.count;
@@ -100,18 +107,28 @@
     if (self.scrollEnabled) {
         [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     }
+    if (self.showIndicatorLineView) {
+        UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+        CGPoint center = CGPointMake(cell.center.x , _indicatroLineView.center.y);
+        [UIView animateWithDuration:0.25 animations:^{
+            if (_indicatorLineAutoWidth) {
+                _indicatroLineView.width = cell.width * 0.8;
+            }
+            _indicatroLineView.center = center;
+           
+        }];
+    }
 
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
 }
 
 #pragma mark ====== Functions =======
 -(void)setScrollToIndex:(NSInteger)scrollToIndex{
     
     current_selected_index = scrollToIndex;
-    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:scrollToIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-    
+    if (_index_arr.count > 0) {
+        [self collectionView:self.collectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:scrollToIndex inSection:0]];
+        [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:scrollToIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+    }
 }
 
 -(NSInteger)current_index{
@@ -121,11 +138,46 @@
 -(void)setIndex_arr:(NSArray *)index_arr{
     _index_arr = index_arr;
     [self.collectionView reloadData];
+    if (_index_arr.count > 0) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self collectionView:self.collectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+        });
+    }
 }
 
 -(void)setScrollEnabled:(BOOL)scrollEnabled{
     _scrollEnabled = scrollEnabled;
     self.collectionView.scrollEnabled = scrollEnabled;
     [self.collectionView reloadData];
+}
+
+// indicatroLineView
+-(UIView *)indicatroLineView{
+    if (_indicatroLineView==nil) {
+        _indicatroLineView=[[UIView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height - 4, _indicatorLineWidth, 4)];
+        _indicatroLineView.backgroundColor = [UIColor greenColor];
+        _indicatroLineView.layer.cornerRadius=2;
+        _indicatroLineView.clipsToBounds=YES;
+    }
+    return _indicatroLineView;
+}
+
+-(void)setShowIndicatorLineView:(BOOL)showIndicatorLineView{
+    _showIndicatorLineView = showIndicatorLineView;
+    if (showIndicatorLineView) {
+        [self.collectionView addSubview:self.indicatroLineView];
+    }
+    _indicatroLineView.hidden = !showIndicatorLineView;
+}
+
+-(void)setIndicatorLineWidth:(CGFloat)indicatorLineWidth{
+    _indicatorLineWidth = indicatorLineWidth;
+    CGRect frame = CGRectMake(_indicatroLineView.frame.origin.x, _indicatroLineView.frame.origin.y, indicatorLineWidth, _indicatroLineView.bounds.size.height);
+    _indicatroLineView.frame = frame;
+}
+
+-(void)setIndicatorLineColor:(UIColor *)indicatorLineColor{
+    _indicatroLineView.backgroundColor = indicatorLineColor;
 }
 @end

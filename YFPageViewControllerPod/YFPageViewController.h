@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "YFBasePageVC.h"
-#import "YFPageConst.h"
+
+typedef NS_ENUM(NSUInteger, VCHierarchy) {
+    VCHierarchy_Scroll,     // 滚动
+    VCHierarchy_Overlay     // 叠加
+};
 
 @interface YFPageViewController : UIViewController
 

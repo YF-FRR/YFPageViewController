@@ -8,7 +8,7 @@
 
 #import "YFPageViewController.h"
 #import "YFIndexIndicatorView.h"
-#import "UIView+Extension.h"
+#import "YFPageConst.h"
 
 @interface YFPageViewController ()<YFIndexIndicatorViewDelegate,UIScrollViewDelegate>
 @property(nonatomic,weak)UICollectionView *collectionView;
@@ -33,21 +33,19 @@
     
     [super viewDidLoad];
 
-    YFIndexIndicatorView *indicatorView = [[YFIndexIndicatorView alloc] init];
+    YFIndexIndicatorView *indicatorView = [[YFIndexIndicatorView alloc] initWithFrame:CGRectMake(0, STATUS_HEIGHT, VC_WIDTH, indicatorViewH)];
     [self.view addSubview:indicatorView];
-    [indicatorView mas_constraint:^(UIView *make) {
-        make.mas_top = STATUS_HEIGHT;
-        make.mas_left = 0;
-        make.mas_right = 0;
-        make.mas_height = indicatorViewH;
-    }];
     indicatorView.index_arr = self.titleArr;
     indicatorView.delegate = self;
     indicatorView.scrollEnabled = _indicator_scrollEnable;
     indicatorView.showAnmation = _indicator_scrollAnimation;
+    indicatorView.showIndicatorLineView = YES;
+    indicatorView.indicatorLineWidth = 100;
+    indicatorView.indicatorLineColor = [UIColor blackColor];
+    indicatorView.indicatorLineAutoWidth = NO;
+    indicatorView.scrollToIndex = 0;
     self.indicatorView = indicatorView;
-    self.indicatorView.scrollToIndex = 0;
-    
+
     YFBasePageVC *vc = self.subVCArr.firstObject;
     [self addChildViewController:vc];
     for (NSInteger i=0; i<_subVCArr.count; i++) {
@@ -57,7 +55,7 @@
     }
 
     if (self.vc_hirearchy == VCHierarchy_Scroll) {
-        UIScrollView *contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, STATUS_HEIGHT + 40, VC_WIDTH, VC_HEIGHT - NAVI_HEIGHT)];
+        UIScrollView *contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, STATUS_HEIGHT + indicatorViewH, VC_WIDTH, VC_HEIGHT - NAVI_HEIGHT)];
         [self.view addSubview:contentScrollView];
         contentScrollView.delegate = self;
         contentScrollView.showsHorizontalScrollIndicator = NO;
@@ -65,7 +63,7 @@
         contentScrollView.pagingEnabled = YES;
         contentScrollView.contentSize = CGSizeMake(VC_WIDTH * self.subVCArr.count, VC_HEIGHT - NAVI_HEIGHT);
         self.contentScrollView = contentScrollView;
-        
+
        vc.view.frame = CGRectMake(0, 0, VC_WIDTH, VC_HEIGHT - NAVI_HEIGHT);
         [self.contentScrollView addSubview:vc.view];
 
@@ -94,7 +92,7 @@
             default:
                 break;
         }
-        
+
         [self addChildViewController:vc];
         vc.view.backgroundColor = RandomColor;
         [vc viewAppearToDoThing];
@@ -117,6 +115,7 @@
     if (![vc isViewLoaded]) {
         vc.view.frame = CGRectMake(VC_WIDTH * index, 0, VC_WIDTH, HEIGHT - NAVI_HEIGHT);
         [self.contentScrollView addSubview:vc.view];
+        [self addChildViewController:vc];
         vc.view.backgroundColor = RandomColor;
         [vc viewAppearToDoThing];
     }

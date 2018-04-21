@@ -26,10 +26,6 @@
 
 #define indicatorViewH 40
 
-typedef NS_ENUM(NSUInteger, VCHierarchy) {
-    VCHierarchy_Scroll,     // 滚动
-    VCHierarchy_Overlay     // 叠加
-};
 
 #endif /* YFPageConst_h */
 

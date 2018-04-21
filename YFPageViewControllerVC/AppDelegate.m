@@ -24,10 +24,10 @@
     
     YFPageViewController * pageVC = [[YFPageViewController alloc]
                                      initWith:
-                                     @[@{@"title":@"第一个Item",@"badge":@"1"},
+                                     @[@{@"title":@"第一个阿斯顿发斯蒂芬Item",@"badge":@"1"},
                                        @{@"title":@"第二个Item",@"badge":@"2"},
                                        @{@"title":@"第三个Item",@"badge":@"3"},
-                                       @{@"title":@"第四个Item",@"badge":@"4"},
+                                       @{@"title":@"第四发生的范德萨个Item",@"badge":@"4"},
                                        @{@"title":@"第五个Item",@"badge":@"0"},]
                                      vcArr:
                                      @[[YFBasePageVC new],
