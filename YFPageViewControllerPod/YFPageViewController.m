@@ -77,17 +77,35 @@
 
 -(void)setCurrent_index:(NSUInteger)current_index{
     _current_index = current_index;
-    
     CGFloat VC_WIDTH = self.view.bounds.size.width;
     CGFloat VC_HEIGHT = self.view.bounds.size.height;
+    
     YFBasePageVC *vc = self.subVCArr[current_index];
     if (![vc isViewLoaded]) {
-        vc.view.frame = CGRectMake(VC_WIDTH * current_index, 0, VC_WIDTH, VC_HEIGHT);
-        [self.contentScrollView addSubview:vc.view];
+        switch (self.vcTransformType) {
+            case VCTransformType_Scroll:
+            {
+                vc.view.frame = CGRectMake(VC_WIDTH * current_index, 0, VC_WIDTH, VC_HEIGHT);
+                [self.contentScrollView addSubview:vc.view];
+            }
+                break;
+            case VCTransformType_Overlay:
+                vc.view.frame = CGRectMake(0, 0, VC_WIDTH, VC_HEIGHT);
+                break;
+            default:
+                break;
+        }
+        
         [vc viewAppearToDoThing];
     }
-
-    [self.contentScrollView setContentOffset:CGPointMake(VC_WIDTH * current_index, 0) animated:NO];
+    
+    if (self.vcTransformType == VCTransformType_Scroll) {
+        [self.contentScrollView setContentOffset:CGPointMake(VC_WIDTH * current_index, 0) animated:YES];
+    }else{
+        [self.view insertSubview:vc.view atIndex:0];
+        [self.view bringSubviewToFront:vc.view];
+    }
+    
 }
 
 @end
